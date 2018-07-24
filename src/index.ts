@@ -210,9 +210,9 @@ function parseOptionsUrl(addr: string): ISingleHostConfig {
  * Works similarly to Object.assign, but only overwrites
  * properties that resolve to undefined.
  */
-function defaults<T>(target: T, ...srcs: T[]): T {
+function defaults<T extends { [key: string]: any }>(target: T, ...srcs: T[]): T {
   srcs.forEach(src => {
-    Object.keys(src).forEach((key: keyof T) => {
+    Object.keys(src).forEach((key: string): void => {
       if (target[key] === undefined) {
         target[key] = src[key];
       }
