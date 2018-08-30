@@ -31,6 +31,8 @@
   "exclude": [
     "src/doc.ts",
     "node_modules",
-    "lib"
+    "lib",
+    "test",
+    "*.test.ts"
   ]
 }
