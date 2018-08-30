@@ -212,11 +212,13 @@ function parseOptionsUrl(addr: string): ISingleHostConfig {
  */
 function defaults<T extends { [key: string]: any }>(target: T, ...srcs: T[]): T {
   srcs.forEach(src => {
-    Object.keys(src).forEach((key: string): void => {
-      if (target[key] === undefined) {
-        target[key] = src[key];
-      }
-    });
+    Object.keys(src).forEach(
+      (key: string): void => {
+        if (target[key] === undefined) {
+          target[key] = src[key];
+        }
+      },
+    );
   });
 
   return target;
@@ -1202,19 +1204,22 @@ export class InfluxDB {
    * })
    */
   public queryRaw(query: string | string[], options: IQueryOptions = {}): Promise<any> {
-    const { database = this.defaultDB(), retentionPolicy } = options;
+    const { database = this.defaultDB(), retentionPolicy, method } = options;
 
     if (query instanceof Array) {
       query = query.join(';');
     }
 
     return this.pool.json(
-      this.getQueryOpts({
-        db: database,
-        epoch: options.precision,
-        q: query,
-        rp: retentionPolicy,
-      }),
+      this.getQueryOpts(
+        {
+          db: database,
+          epoch: options.precision,
+          q: query,
+          rp: retentionPolicy,
+        },
+        method,
+      ),
     );
   }
 
