@@ -167,6 +167,12 @@ export interface IQueryOptions {
    * database is not provided in Influx.
    */
   database?: string;
+
+  /**
+   * HTTP method to use for requests
+   */
+
+   method?: 'GET' | 'PUT'
 }
 
 /**
@@ -1215,7 +1221,7 @@ export class InfluxDB {
    * })
    */
   public queryRaw(query: string | string[], options: IQueryOptions = {}): Promise<any> {
-    const { database = this.defaultDB(), retentionPolicy } = options;
+    const { database = this.defaultDB(), retentionPolicy, method } = options;
 
     if (query instanceof Array) {
       query = query.join(';');
@@ -1227,7 +1233,7 @@ export class InfluxDB {
         epoch: options.precision,
         q: query,
         rp: retentionPolicy,
-      }),
+      }, method),
     );
   }
 
