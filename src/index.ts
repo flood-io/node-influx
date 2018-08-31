@@ -173,7 +173,7 @@ export interface IQueryOptions {
    * HTTP method to use for requests
    */
 
-   method?: 'GET' | 'PUT'
+   method?: 'GET' | 'POST'
 }
 
 /**
