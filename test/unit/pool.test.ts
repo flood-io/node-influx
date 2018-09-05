@@ -32,6 +32,7 @@ describe('pool', () => {
       server = http.createServer(handler());
       server.listen(0, () => {
         for (let i = 0; i < hosts; i += 1) {
+          // @ts-ignore
           pool.addHost(`http://127.0.0.1:${server.address().port}`);
         }
         done();
@@ -76,9 +77,9 @@ describe('pool', () => {
     const p = createPool();
     const body = '\u00FF';
     p.addHost('https://httpbin.org/post');
-    p
-      .json({ method: 'POST', path: '/post', body: body })
-      .then(data => expect(data.data).to.equal(body));
+    p.json({ method: 'POST', path: '/post', body: body }).then(data =>
+      expect(data.data).to.equal(body),
+    );
   });
 
   describe('request generators', () => {

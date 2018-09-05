@@ -65,7 +65,7 @@
     "npm-run-all": "^4.0.2",
     "opn-cli": "^3.1.0",
     "prettier": "^1.4.4",
-		"run-script-os": "^1.0.3",
+    "run-script-os": "^1.0.3",
     "sinon": "^4.3.0",
     "sinon-chai": "^2.8.0",
     "stream-http": "github:node-influx/stream-http",
