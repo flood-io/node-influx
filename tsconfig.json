@@ -17,5 +17,6 @@
       "*": ["src/types/*"]
     }
   },
-  "exclude": ["src/doc.ts", "node_modules", "lib"]
+  "exclude": ["src/doc.ts", "node_modules", "lib"],
+  "include": ["./src/**/*"]
 }
