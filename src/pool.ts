@@ -241,7 +241,13 @@ export class Pool {
 
         let output = '';
         res.on('data', str => (output = output + str.toString()));
-        res.on('end', () => resolve(output));
+        res.on('end', () => {
+          const size = Buffer.byteLength(output);
+          console.log(
+            JSON.stringify({ message: `INFLUX byte size:   ${size} bytes`, level: 'info' }),
+          );
+          resolve(output);
+        });
       });
     });
   }
